@@ -1,4 +1,7 @@
 # AI 개인 프로젝트
+
+**sqltable파일에 있는 sql데이터 먼저 생성
+
 ![1](https://github.com/user-attachments/assets/31fe15fb-1855-4c9f-a584-e5ee53b0c69f)
 ![2](https://github.com/user-attachments/assets/afb6bf52-04e1-458c-9b13-9406e8c2d468)
 ![3](https://github.com/user-attachments/assets/8b00cf65-af8c-4c1a-83c5-5daf0859d670)
