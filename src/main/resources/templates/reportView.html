@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<div th:replace="~{top::menu}"></div>
+<head>
+    <meta charset="UTF-8">
+    <title>MRI 학습 결과</title>
+</head>
+<body>
+<!-- PDF 파일을 표시하는 iframe -->
+<iframe th:src="@{${pdfUrl}}" width="100%" height="800px"></iframe>
+</body>
+</html>

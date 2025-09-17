@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<div th:replace="~{top::menu}"></div>
+<head>
+    <meta charset="UTF-8">
+    <title>차량 번호 인식 결과</title>
+    <link rel="stylesheet" th:href="@{/css/carres.css}">
+</head>
+<body>
+
+<h3>차량 번호 인식 결과</h3>
+
+<!-- 결과 표시 박스 -->
+<div class="result-container">
+    <!-- ✅ 이미지 표시 -->
+    <div>
+        <img th:src="${imagePath}" alt="차량 이미지" class="car-image"/>
+    </div>
+
+    <!-- ✅ 결과 표시 -->
+    <div>
+        <h2>번호판: <span th:text="${plate}">번호 없음</span></h2>
+        <p>정확도:
+            <span th:text="${accuracy}"
+                  th:classappend="${accuracy >= 0.9 ? 'accuracy-high' : 'accuracy-low'}">0.00</span>
+        </p>
+    </div>
+
+    <!-- ✅ 차량 사진 선택 페이지로 가는 버튼 -->
+    <div>
+        <button type="button" class="button-link" onclick="window.location.href='/select-image'">차량 사진 선택하기</button>
+    </div>
+</div>
+
+</body>
+</html>

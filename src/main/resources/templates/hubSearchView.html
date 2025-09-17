@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+<div th:replace="~{top::menu}"></div>
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" th:href="@{/css/search.css}">
+    <link rel="stylesheet" th:href="@{/css/schtb.css}">
+    <link rel="stylesheet" th:href="@{/css/page.css}">
+</head>
+<body>
+<div class="container">
+    <form action="/search2" method="get" id="searchForm">
+        <div style="position: relative; width: 100%;">
+            <input type="search" id="search2" name="keyword" placeholder="병명(예:종양) 검색"
+                   th:value="${keyword}">
+            <i class="fas fa-search search-icon" onclick="submitSearch()"></i>
+        </div>
+    </form>
+
+    <p th:text="${keyword}+'(으)로 검색된 자료수 : '+${count}"></p>
+
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th>c_id</th>
+            <th>domain</th>
+            <th>source</th>
+            <th>source_spec</th>
+            <th>creation_year</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="item:${list}">
+            <td><a th:href="@{hub2(id=${item.c_id})}" th:text="${item.c_id}"></a></td>
+            <td th:text="${item.domain}"></td>
+            <td th:text="${item.source}"></td>
+            <td th:text="${item.source_spec}"></td>
+            <td th:text="${item.creation_year}"></td>
+        </tr>
+        <!-- 검색 결과 없음 -->
+        <tr th:if="${#lists.isEmpty(list)}">
+            <td colspan="5" class="text-center text-muted">검색 결과가 없습니다.</td>
+        </tr>
+        </tbody>
+    </table>
+
+    <!-- ✅ 페이징 네비게이션 -->
+    <nav th:if="${totalPages > 1}" class="d-flex justify-content-center mt-3">
+        <ul class="pagination">
+            <!-- 이전 블럭 -->
+            <li class="page-item" th:classappend="${currentPage == 0} ? 'disabled'">
+                <a class="page-link"
+                   href="javascript:void(0);"
+                   th:attr="data-page=${currentPage - blockSize < 0 ? 0 : currentPage - blockSize}, data-keyword=${keyword}"
+                   onclick="navigateFromElement(this)">
+                    이전
+                </a>
+            </li>
+
+            <!-- 페이지 번호 -->
+            <li th:each="i : ${#numbers.sequence(startPage, endPage)}"
+                class="page-item"
+                th:classappend="${i == currentPage} ? 'active'">
+                <a class="page-link"
+                   href="javascript:void(0);"
+                   th:text="${i + 1}"
+                   th:attr="data-page=${i}, data-keyword=${keyword}"
+                   onclick="navigateFromElement(this)"></a>
+            </li>
+
+            <!-- 다음 블럭 -->
+            <li class="page-item" th:classappend="${endPage == totalPages - 1} ? 'disabled'">
+                <a class="page-link"
+                   href="javascript:void(0);"
+                   th:attr="data-page=${endPage + 1}, data-keyword=${keyword}"
+                   onclick="navigateFromElement(this)">
+                    다음
+                </a>
+            </li>
+        </ul>
+    </nav>
+</div>
+
+<script>
+    // 돋보기 아이콘 클릭 시 검색 실행
+    function submitSearch() {
+        document.getElementById('searchForm').submit();
+    }
+
+    // 공용: data-* 속성에서 페이지와 키워드를 읽어 이동
+    function navigateFromElement(el) {
+        const pageRaw = el.getAttribute('data-page');
+        const keywordRaw = el.getAttribute('data-keyword');
+
+        const page = pageRaw !== null ? parseInt(pageRaw, 10) : 0;
+        const keyword = keywordRaw !== null ? keywordRaw : '';
+
+        const safePage = isNaN(page) || page < 0 ? 0 : page;
+
+        const encodedKeyword = encodeURIComponent(keyword);
+        window.location.href = '/search2?page=' + safePage + '&keyword=' + encodedKeyword;
+    }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,75 @@
+h3{
+        text-align: center;
+        }
+
+        .card {
+            background: #fff;
+            padding: 25px 35px;
+            max-width: 700px;
+            margin: 0 auto 25px;
+            border-radius: 16px;
+            box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        form {
+            text-align: center;
+        }
+
+        /* 파일 업로드 부분을 중앙 정렬로 */
+        .file-upload-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 10px;
+            font-size: 15px;
+            color: #374151;
+        }
+
+        input[type="file"] {
+            margin: 10px 0 20px;
+            padding: 8px;
+            border: 1px solid #d1d5db;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+         button {
+            background: #00BFFF;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 15px;
+            font-weight: 600;
+            transition: background 0.3s ease, transform 0.2s ease;
+        }
+
+        button:hover {
+            background:#3b82f6;
+        }
+
+        .result-box h3 {
+            margin-top: 0;
+            font-size: 18px;
+            color: #1e3a8a;
+        }
+
+        .result-box p {
+            font-size: 16px;
+            line-height: 1.6;
+            color: #374151;
+        }
+
+        audio {
+            margin-top: 15px;
+            width: 100%;
+            border-radius: 10px;
+        }

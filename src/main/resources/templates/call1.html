@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<div th:replace="~{top::menu}"></div>
+<head>
+    <meta charset="UTF-8">
+    <title>음성 파일 인식 결과</title>
+    <link rel="stylesheet" th:href="@{/css/fileup.css}">
+</head>
+<body>
+<h3>음성텍스트 변환</h3>
+<div class="card">
+    <div class="file-upload-wrapper">
+        <form action="/call1" method="post" enctype="multipart/form-data">
+            <label>음성 파일 업로드</label>
+            <input type="file" name="file" accept=".wav" required>
+            <br>
+            <button type="submit">변환하기</button>
+        </form>
+    </div>
+</div>
+
+<!-- 선택된 음성 파일 재생 -->
+<div class="card result-box" th:if="${filename}">
+    <h3>선택된 파일: <span th:text="${filename}"></span></h3>
+    <audio controls>
+        <source th:src="@{/voicedata/{file}(file=${filename})}" type="audio/wav">
+        브라우저에서 오디오 태그를 지원하지 않습니다.
+    </audio>
+</div>
+
+<!-- 변환된 텍스트 결과 -->
+<div class="card result-box" th:if="${result}">
+    <h3>변환 결과</h3>
+    <p th:text="${result}">결과가 표시됩니다.</p>
+</div>
+
+</body>
+</html>

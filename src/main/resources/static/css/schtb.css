@@ -1,0 +1,110 @@
+/* p 태그 스타일 */
+h3{
+text-align: center;
+}
+        p {
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+            font-weight: bold;
+        }
+
+       /* 테이블 스타일 */
+table {
+    width: 40%;             /* 🔹 전체 가로폭 줄이기 (기존 60% → 40%) */
+    max-width: 500px;       /* 🔹 최대 너비 줄이기 */
+    margin: 20px auto;
+    border-collapse: collapse;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    table-layout: fixed;    /* 셀 너비 고정 */
+    word-wrap: break-word;
+    word-break: break-word; /* 긴 단어도 줄바꿈 */
+}
+/* doc_id 헤더만 넓게 */
+.table thead th:nth-child(1) {
+    width: 300px;        /* 헤더만 길게 */
+    white-space: nowrap; /* 헤더 줄바꿈 방지 */
+}
+
+        thead {
+            background-color: 		#87CEEB	;
+            color: white;
+        }
+
+        thead th {
+            padding: 10px 15px;
+            text-align: left;
+            font-size: 14px;
+            border-top: 1px solid #ddd;
+        }
+
+        tbody tr {
+            border-bottom: 1px solid #ddd;
+        }
+
+        tbody td {
+            padding: 10px 15px;
+            font-size: 14px;
+            color: #555;
+            vertical-align: top; /* 텍스트 위쪽 정렬 */
+        }
+
+        tbody tr:hover {
+            background-color: #f1f1f1;
+            cursor: pointer;
+        }
+
+        a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        /* 번호 칸 */
+/* c_id 열(첫 번째 열) 넓히기 */
+.table th:nth-child(1),
+.table td:nth-child(1) {
+    width: 200px;   /* 🔹 원하는 폭(px, %, em 단위 가능) */
+    white-space: nowrap;   /* 🔹 줄바꿈 방지 */
+}
+/* 질문 칸 */
+table td:nth-child(2),
+table th:nth-child(2) {
+    white-space: normal;   /* 🔹 줄바꿈 허용 */
+    word-break: break-word;
+}
+
+        /* 반응형 디자인 */
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+
+            form {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            input[type="search"] {
+                font-size: 14px;
+                width: 100%; /* 작은 화면에서는 검색창 너비 100% */
+            }
+
+            p {
+                font-size: 16px;
+                padding: 12px;
+            }
+
+            table {
+                width: 100%; /* 작은 화면에서는 테이블 100% */
+                font-size: 12px;
+            }
+
+            table th, table td {
+                padding: 8px;
+            }
+        }
+

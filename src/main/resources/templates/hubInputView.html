@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<div th:replace="~{top::menu}"></div>
+<head>
+    <meta charset="UTF-8">
+    <title>검색 결과</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" th:href="@{/css/search.css}">
+    <link rel="stylesheet" th:href="@{/css/schtb.css}">
+    <link rel="stylesheet" th:href="@{/css/page.css}">
+</head>
+
+<body>
+<div class="container">
+    <!-- 검색창 -->
+    <form action="/input2" method="get" id="searchForm">
+        <div style="position: relative; width: 100%;">
+            <input type="search" id="search2" name="keyword" placeholder="증상 검색"
+                   th:value="${keyword}">
+            <i class="fas fa-search search-icon" onclick="submitSearch()"></i>
+        </div>
+    </form>
+
+    <!-- 검색 결과 안내 -->
+    <p th:text="${keyword}+'(으)로 검색된 자료수 : '+${count}"></p>
+
+    <!-- 검색 결과 테이블 -->
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th>번호</th>
+            <th>질문</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="item:${list}">
+            <td th:text="${item.num}"></td>
+            <td>
+                <a th:href="@{detail(num=${item.num})}" th:text="${item.question}"></a>
+            </td>
+        </tr>
+        <!-- 데이터 없을 때 -->
+        <tr th:if="${#lists.isEmpty(list)}">
+            <td colspan="2" class="text-center text-muted">검색 결과가 없습니다.</td>
+        </tr>
+        </tbody>
+    </table>
+
+    <!-- ✅ 페이징 네비게이션 (data-* 방식, Thymeleaf 안전) -->
+    <nav th:if="${totalPages > 1}" class="d-flex justify-content-center mt-3">
+        <ul class="pagination">
+            <!-- 이전 블럭 -->
+            <li class="page-item" th:classappend="${currentPage == 0} ? 'disabled'">
+                <a class="page-link"
+                   href="javascript:void(0);"
+                   th:attr="data-page=${currentPage - blockSize < 0 ? 0 : currentPage - blockSize}, data-keyword=${keyword}"
+                   onclick="navigateFromElement(this)">
+                    이전
+                </a>
+            </li>
+
+            <!-- 페이지 번호 -->
+            <li th:each="i : ${#numbers.sequence(startPage, endPage)}"
+                class="page-item"
+                th:classappend="${i == currentPage} ? 'active'">
+                <a class="page-link"
+                   href="javascript:void(0);"
+                   th:text="${i + 1}"
+                   th:attr="data-page=${i}, data-keyword=${keyword}"
+                   onclick="navigateFromElement(this)"></a>
+            </li>
+
+            <!-- 다음 블럭 -->
+            <li class="page-item" th:classappend="${endPage == totalPages - 1} ? 'disabled'">
+                <a class="page-link"
+                   href="javascript:void(0);"
+                   th:attr="data-page=${endPage + 1}, data-keyword=${keyword}"
+                   onclick="navigateFromElement(this)">
+                    다음
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+    <script>
+        // 돋보기 아이콘 클릭 시 검색 실행 (기존)
+        function submitSearch() {
+          document.getElementById('searchForm').submit();
+        }
+
+        // 공용: data-* 속성에서 페이지와 키워드를 읽어 이동
+        function navigateFromElement(el) {
+          // data-page는 숫자, data-keyword는 문자열(빈값일 수 있음)
+          const pageRaw = el.getAttribute('data-page');
+          const keywordRaw = el.getAttribute('data-keyword');
+
+          // 안전하게 파싱
+          const page = pageRaw !== null ? parseInt(pageRaw, 10) : 0;
+          const keyword = keywordRaw !== null ? keywordRaw : '';
+
+          // 페이지 범위 보호 (음수 방지)
+          const safePage = isNaN(page) || page < 0 ? 0 : page;
+
+          const encodedKeyword = encodeURIComponent(keyword);
+          window.location.href = '/input2?page=' + safePage + '&keyword=' + encodedKeyword;
+        }
+    </script>
+</div>

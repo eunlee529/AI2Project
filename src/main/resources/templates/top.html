@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org" th:fragment="menu">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <style>
+        /* 상단 헤더 */
+
+
+
+        /* 네비게이션 바 */
+        .navbar {
+            background: #fefefe !important;
+            border: none;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+            border-radius: 0;
+        }
+
+        .navbar-nav > li > a {
+            color: #555 !important;
+            font-weight: 500;
+            font-size: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .navbar-nav > li.active > a,
+        .navbar-nav > li > a:hover,
+        .navbar-nav > .open > a {
+            background: #a8edea !important;
+            color: #333 !important;
+            border-radius: 6px;
+        }
+
+        /* 드롭다운 메뉴 */
+        .dropdown-menu {
+            background: #ffffff;
+            border-radius: 8px;
+            border: 1px solid #eee;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .dropdown-menu > li > a {
+            color: #555 !important;
+            padding: 8px 16px;
+            transition: all 0.2s ease;
+        }
+
+        .dropdown-menu > li > a:hover {
+            background: #fed6e3 !important;
+            color: #333 !important;
+            border-radius: 6px;
+        }
+
+        /* 로그인/회원가입 버튼 */
+        .navbar-right > li > a {
+            color: #666 !important;
+            font-weight: 500;
+        }
+
+        .navbar-right > li > a:hover {
+            background: #fceabb !important;
+            border-radius: 6px;
+        }
+    </style>
+</head>
+
+<body>
+<header>
+    <h2 style="text-align: center" th:text="${'AI 프로젝트'}"></h2>
+</header>
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <ul class="nav navbar-nav">
+            <li class="active"><a href="main">🏠</a></li>
+            <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">시각화<span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    <li><a href="suwon">수원시 주거현황(막대그래프)</a></li>
+                    <li><a href="suwon2">수원시 주거현황(원형차트)</a></li>
+                </ul>
+            </li>
+            <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">딥러닝<span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    <li><a href="iris">손실률과 정확도</a></li>
+                    <li><a href="mrimg">MRI학습결과</a></li>
+                </ul>
+            </li>
+            <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">로보플로우<span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    <li><a href="robo1">부유물 탐색</a></li>
+                    <li><a href="robo2">사람 인식</a></li>
+                    <li><a href="robo3">차량 카운트</a></li>
+                    <li><a href="robo4">모션 인식</a></li>
+                </ul>
+            </li>
+            <li class="dropdown"><a class="dropdown-toggle"  data-toggle="dropdown" href="#">AI Hub<span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    <li><a href="hub1">의학 자료 데이터 전체</a></li>
+                    <li><a href="search">의학 자료 키워드 검색</a></li>
+                    <li class="divider"></li>
+                    <li><a href="hub3">법률 데이터 전체</a></li>
+                    <li><a href="lawsch">법률 데이터 키워드 검색</a></li>
+                </ul>
+            </li>
+            <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">자연어 처리<span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    <li><a href="input">병명 질문하기</a></li>
+                    <li><a href="call1">음성텍스트변환</a></li>
+                    <li><a href="select-image">차량번호인식</a></li>
+                </ul>
+            </li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+            <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+        </ul>
+    </div>
+</nav>
+
+
+
+</body>
+
+</html>

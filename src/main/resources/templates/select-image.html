@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<div th:replace="~{top::menu}"></div>
+<head>
+    <meta charset="UTF-8">
+    <title>이미지 선택</title>
+    <link rel="stylesheet" th:href="@{/css/fileup.css}">
+</head>
+<body>
+<h3>차량번호 인식</h3>
+<!-- 파일 업로드 카드 -->
+<div class="card">
+    <div class="file-upload-wrapper">
+        <form method="post" action="/carno1" enctype="multipart/form-data">
+            <label>이미지 파일 업로드</label>
+            <input type="file" name="selectedImage" class="file-input" accept="image/*" />
+            <br/>
+            <button type="submit">OCR 실행</button>
+        </form>
+    </div>
+</div>
+
+</body>
+</html>

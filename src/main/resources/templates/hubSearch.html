@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+<div th:replace="~{top::menu}"></div>
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" th:href="@{/css/search.css}">
+</head>
+<body>
+
+<div class="container">
+    <form action="/search2" method="get" id="searchForm">
+        <div style="position: relative; width: 100%;">
+        <input type="search" id="search2" name="keyword" placeholder="병명(예: 종양) 검색"
+               th:value="${keyword}">
+        <i class="fas fa-search search-icon" onclick="submitSearch()"></i>
+    </div>
+    </form>
+</div>
+
+<script>
+    // 돋보기 아이콘 클릭 시 검색 실행
+    function submitSearch() {
+        document.getElementById('searchForm').submit(); // 폼 제출
+    }
+</script>
+
+</body>
+
+</html>

@@ -1,0 +1,19 @@
+/* 테이블 텍스트 왼쪽 정렬 */
+    .table th, .table td {
+        text-align: left;
+    }
+
+    /* 페이징 네비게이션 중앙 정렬 */
+    .pagination {
+        display: flex;
+        justify-content: center; /* 중앙 정렬 */
+        padding-left: 0;
+        list-style-type: none;
+    }
+
+    .pagination .page-item {
+        display: inline-block;
+    }
+
+    .pagination .page-link {
+        cursor: pointer;

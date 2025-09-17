@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<div th:replace="~{top::menu}"></div>
+    <head>
+        <link rel="stylesheet" th:href="@{/css/schtb.css}">
+        <link rel="stylesheet" th:href="@{/css/page.css}">
+    </head>
+<body>
+<div class="container">
+    <table class="table text-center"> <!-- 테이블 중앙 정렬 -->
+        <thead>
+        <tr>
+            <th>doc_id</th>
+            <th>casenames</th>
+            <th>normalized_court</th>
+            <th>casetype</th>
+            <th>announce_date</th>
+        </tr>
+        </thead>
+        <tbody>
+        <!-- 데이터 있을 때 -->
+        <tr th:each="item : ${list}">
+            <td><a th:href="@{/hub4(dcid=${item.docId})}" th:text="${item.docId}"></a></td>
+            <td th:text="${item.casenames}"></td>
+            <td th:text="${item.normalizedCourt}"></td>
+            <td th:text="${item.casetype}"></td>
+            <td th:text="${item.announceDate}"></td>
+        </tr>
+        <!-- 데이터 없을 때 -->
+        <tr th:if="${#lists.isEmpty(list)}">
+            <td colspan="6" class="text-center text-muted">데이터가 없습니다.</td>
+        </tr>
+        </tbody>
+    </table>
+
+    <!-- 페이징 네비게이션 -->
+    <nav th:if="${totalPages > 1}" class="d-flex justify-content-center mt-3">
+        <ul class="pagination">
+            <!-- 이전 블럭 -->
+            <li class="page-item" th:classappend="${currentPage == 0} ? 'disabled'">
+                <a class="page-link"
+                   th:href="@{/hub3(page=${currentPage - blockSize < 0 ? 0 : currentPage - blockSize}, keyword=${keyword})}">이전</a>
+            </li>
+
+            <!-- 페이지 번호 (5개씩) -->
+            <li th:each="i : ${#numbers.sequence(startPage, endPage)}"
+                class="page-item"
+                th:classappend="${i == currentPage} ? 'active'">
+                <a class="page-link"
+                   th:text="${i+1}"
+                   th:href="@{/hub3(page=${i}, keyword=${keyword})}"></a>
+            </li>
+
+            <!-- 다음 블럭 -->
+            <li class="page-item" th:classappend="${endPage == totalPages - 1} ? 'disabled'">
+                <a class="page-link"
+                   th:href="@{/hub3(page=${endPage + 1}, keyword=${keyword})}">다음</a>
+            </li>
+        </ul>
+    </nav>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+<div th:replace="~{top::menu}"></div>
+<head>
+    <link rel="stylesheet" th:href="@{/css/detail.css}">
+</head>
+<body>
+<div class="container">
+    <table class="table">
+        <tr>
+            <th>doc_id</th>
+            <td th:text="${item.docId}"></td>
+        </tr>
+        <tr>
+            <th>casenames</th>
+            <td th:text="${item.casenames}"></td>
+        </tr>
+        <tr>
+            <th>normalizedCourt</th>
+            <td th:text="${item.normalizedCourt}"></td>
+        </tr>
+        <tr>
+            <th>casetype</th>
+            <td th:text="${item.casetype}"></td>
+        </tr>
+        <tr>
+            <th>sentences</th>
+            <td th:text="${item.sentences}"></td>
+        </tr>
+
+    </table>
+</div>
+
+
+</body>
+
+</html>

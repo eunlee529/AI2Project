@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<div th:replace="~{top::menu}"></div>
+<head>
+    <meta charset="UTF-8">
+    <title>상세 보기</title>
+    <link rel="stylesheet" th:href="@{/css/detail.css}">
+</head>
+<body>
+<div class="container">
+    <table class="table">
+        <tr>
+            <th>글번호</th>
+            <td th:text="${item.num}"></td>
+        </tr>
+        <tr>
+            <th>질문</th>
+            <td th:text="${item.question}"></td>
+        </tr>
+        <tr>
+            <th>답변</th>
+            <td th:text="${item.answer}"></td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>

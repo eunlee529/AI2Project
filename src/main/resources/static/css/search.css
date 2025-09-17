@@ -1,0 +1,35 @@
+/* 폼 스타일 */
+        form {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            margin: 20px;
+        }
+
+        input[type="search"] {
+            width: 60%; /* 검색창 너비 60%로 설정 */
+            max-width: 400px; /* 최대 너비를 400px로 설정 */
+            padding: 12px 20px;
+            font-size: 16px;
+            border: 1px solid #ddd;
+            border-radius: 25px;
+            margin-right: 10px;
+            color: #374151;
+            outline: none;
+            box-sizing: border-box;
+            position: relative;
+        }
+
+        input[type="search"]:focus {
+            border-color: #00BFFF;
+        }
+
+        /* 돋보기 아이콘 스타일 */
+        .search-icon {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 18px;
+            color: #374151;
+            cursor: pointer;
+        }

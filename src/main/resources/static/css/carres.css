@@ -1,0 +1,75 @@
+
+h3{
+        text-align: center;
+        }
+
+/* 정확도 표시 */
+        .accuracy-high {
+            color: red;
+            font-weight: bold;
+        }
+
+        .accuracy-low {
+            color: green;
+            font-weight: bold;
+        }
+
+        /* 차량 이미지 스타일 */
+        .car-image {
+            width: 400px;
+            height: auto;
+            margin-top: 20px;
+            border: 2px solid #ccc;
+            border-radius: 10px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* 결과 표시 박스 */
+        .result-container {
+            max-width: 700px;
+            margin: 30px auto;
+            padding: 30px;
+            background-color: #fff;
+            border-radius: 16px;
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        /* 버튼 스타일 */
+        .button-link {
+            background-color: #00BFFF;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            margin-top: 20px;
+            transition: background 0.3s ease;
+        }
+
+        .button-link:hover {
+            background-color: #3b82f6;
+        }
+
+        /* 반응형 스타일 */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2em;
+            }
+
+            h2 {
+                font-size: 1.5em;
+            }
+
+            .car-image {
+                width: 80%;
+            }
+
+            .result-container {
+                padding: 20px;
+            }
+        }
